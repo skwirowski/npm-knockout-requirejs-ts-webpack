@@ -1,0 +1,18 @@
+{
+  "name": "requirejs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "node build/r.js -o name=main baseUrl=src/js mainConfigFile=src/js/main.js out=src/js/main-optimized.min.js optimize=none",
+    "build:optimize": "node build/r.js -o name=main baseUrl=src/js mainConfigFile=src/js/main.js out=src/js/main-optimized.min.js",
+    "build:sourcemap": "node build/r.js -o build/build.config.js",
+    "test": "jasmine baseUrl=src/js"
+  },
+  "dependencies": {
+    "require-handlebars-plugin": "^2.0.0-beta.0"
+  },
+  "devDependencies": {
+    "jasmine": "^3.5.0"
+  }
+}

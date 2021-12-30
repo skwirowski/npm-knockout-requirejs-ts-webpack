@@ -1,0 +1,51 @@
+{
+  "name": "introduction-to-npm-as-a-build-tool",
+  "version": "1.0.0",
+  "description": "Introduction to npm as a build tool",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "watch:test": "npm run test -- -w -R min",
+    "pretest": "npm run lint",
+    "posttest": "echo \"post-test script\"",
+    "start": "node ./src/index.js",
+    "start:dev": "node ./src/index.js 4000",
+    "lint": "jshint . --config jshintrc.json",
+    "compile:coffee": "coffee --compile --output lib/ src/coffeescript",
+    "compile:ts": "tsc",
+    "compile": "npm run compile:coffee && npm run compile:ts",
+    "precompile": "npm run clean",
+    "clean": "rimraf ./lib/*",
+    "stop": "echo \"Running stop script\"",
+    "restart": "echo \"Running restart script\"",
+    "build:less": "lessc ./src/styles lib/styles.css",
+    "prebuild:bundle": "npm run transpile",
+    "build:bundle": "browserify ./lib/bundle.js | uglifyjs -mc > ./lib/bundle.js",
+    "transpile": "rimraf ./lib/bundle.js && babel ./src/index.js --out-file ./lib/bundle.js"
+  },
+  "keywords": [
+    "npm",
+    "script",
+    "package"
+  ],
+  "author": "Paweł Skwirowski",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "glob": "^7.1.6",
+    "koa": "^2.11.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "browserify": "^16.5.0",
+    "coffeescript": "^2.5.1",
+    "jshint": "^2.11.0",
+    "less": "^3.11.1",
+    "mocha": "^7.0.1",
+    "rimraf": "^3.0.2",
+    "should": "^13.2.3",
+    "supertest": "^4.0.2",
+    "typescript": "^3.8.2",
+    "uglify-js": "^3.8.0"
+  }
+}

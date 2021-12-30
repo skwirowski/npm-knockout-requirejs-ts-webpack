@@ -1,0 +1,27 @@
+{
+  "name": "typescript_fundamentals",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Pawel Skwirowski",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jquery": "^3.3.33",
+    "@types/knockout": "^3.4.67",
+    "@typescript-eslint/eslint-plugin": "^2.24.0",
+    "@typescript-eslint/parser": "^2.24.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-prettier": "^3.1.2",
+    "prettier": "1.19.1",
+    "typescript": "^3.8.3"
+  },
+  "scripts": {
+    "fix:eslint": "eslint --config ./.eslintrc.json ./src/*.* --fix",
+    "fix:prettier": "prettier --config ./.prettierrc ./src/*.* --write",
+    "fix": "yarn fix:eslint && yarn fix:prettier",
+    "ts": "tsc"
+  },
+  "dependencies": {}
+}

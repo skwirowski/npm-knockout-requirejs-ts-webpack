@@ -1,0 +1,6 @@
+**/node_modules
+**/dist
+**/.vs
+**/bower_components
+**/dependencies/
+*.js.map

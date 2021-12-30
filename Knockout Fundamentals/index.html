@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="./src/styles/style.css" >
+  <script src="./dist/main.bundle.js" defer></script>
+</head>
+<body
+  style="
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+  "
+>
+  <div
+    class="introduction"
+    style="
+      background-color: #c9c9c9;
+      padding: 20px 40px;
+    "
+  >
+    <h1>Introduction</h1>
+    <label for="name">Name:</label>
+    <input
+      id="name"
+      type="text"
+      data-bind="
+        value: name,
+        valueUpdate: 'afterkeydown'
+      "
+    >
+    <input
+      type="checkbox"
+      data-bind="checked: nameVisible"
+    >
+    <p>
+      Hello, <span data-bind="text: name, visible: nameVisible"></span>
+    </p>
+    <p>
+      <span data-bind="text: displayName"></span>
+    </p>
+    <button data-bind="click: changeName">Change Name</button>
+  </div>
+
+  <div
+    class="observables"
+    style="
+      background-color: sandybrown;
+      padding: 20px 40px;
+    "
+  >
+    <button data-bind="click: addItem">Add</button>
+    <button data-bind="click: removeItem">Remove</button>
+    <ul
+      data-bind="
+        template: {
+          name: 'listTemplate',
+          foreach: list
+        }
+      "
+    ></ul>
+  </div>
+
+  <div
+    class="bindings"
+    style="
+      background-color: aquamarine;
+      padding: 20px 40px;
+    "
+  >
+    <h1>Bindings</h1>
+    <input
+      type="text"
+      placeholder="Add new tag"
+      data-bind="
+        value: tagToAdd,
+        valueUpdate: 'afterkeydown',
+        executeOnEnter: addTag
+      "
+    >
+    <button data-bind="click: addTag">+ add</button>
+    <ul data-bind="foreach: tags">
+      <li class="activity-item" data-bind="click: $parent.selectTag">
+        <span
+          data-bind="text: designation"
+          style="
+            display: inline-block;
+            width: 200px;
+          "
+        ></span>
+        <span
+          class="tag-edit"
+          style="
+            display: inline-block;
+            background-color: #0083ff;
+            color: white;
+            padding: 5px;
+            margin: 5px;
+            cursor: pointer;
+            user-select: none;
+          "
+        >
+          Edit
+        </span>
+        <span
+          class="tag-delete"
+          style="
+            display: inline-block;
+            background-color: #ff4848;
+            color: white;
+            padding: 5px;
+            margin: 5px;
+            cursor: pointer;
+            user-select: none;
+          "
+        >
+          Delete
+        </span>
+      </li>
+    </ul>
+  </div>
+
+  <div
+    id='tag-dialog'
+    class="dialog-window hide"
+    data-bind="with: selectedTag"
+  >
+    <div
+      class="wrapper"
+      style="
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        height: 200px;
+        width: 300px;
+        background-color: white;
+      "
+      >
+      <span style="margin-right: 10px;">Tag name:</span>
+      <input type="text" data-bind="value: designation" >
+      <div
+        class="buttons-wrapper"
+      >
+        <button id="dialog-save">save</button>
+        <button id="dialog-cancel">cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="debug-section">
+    <h1>Debug section</h1>
+    <!-- $data is data of the ViewModel itself (root ViewModel)  -->
+    <div data-bind="text: ko.toJSON($data)" ></div>
+  </div>
+
+  <script id="listTemplate" type="text/html">
+    <li>
+      <span data-bind="text: name"></span>
+    </li>
+  </script>
+</body>
+</html>
